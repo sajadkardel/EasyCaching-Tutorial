@@ -7,22 +7,22 @@ namespace InMemoryProvider.Services
 {
     public class CacheService : ICacheService
     {
-        private readonly IHybridCachingProvider _hybridCachingProvider;
-        public CacheService(IHybridCachingProvider hybridCachingProvider)
+        private readonly IEasyCachingProvider _easyCachingProvider;
+        public CacheService(IEasyCachingProvider easyCachingProvider)
         {
-            _hybridCachingProvider = hybridCachingProvider;
+            _easyCachingProvider = easyCachingProvider;
         }
 
         public async Task CacheResponseAsync(string cacheKey, object response, TimeSpan timeToLive)
         {
             if (response == null) return;
             var serializedResponse = JsonConvert.SerializeObject(response);
-            await _hybridCachingProvider.SetAsync(cacheKey, serializedResponse, timeToLive);
+            await _easyCachingProvider.SetAsync(cacheKey, serializedResponse, timeToLive);
         }
 
         public async Task<string> GetCachedResponseAsync(string cacheKey)
         {
-            var cachedResponse = await _hybridCachingProvider.GetAsync<string>(cacheKey);
+            var cachedResponse = await _easyCachingProvider.GetAsync<string>(cacheKey);
             return string.IsNullOrWhiteSpace(cachedResponse.Value) ? null : cachedResponse.Value;
         }
     }
