@@ -16,7 +16,8 @@ namespace HybridProvider.Controllers
         [Cached]
         public IActionResult GetTime()
         {
-            return Ok(DateTime.Now.Second);
+            var data = DateTime.Now.Second;
+            return Ok(data);
         }
     }
 }

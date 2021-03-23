@@ -41,7 +41,7 @@ namespace RedisProvider
                 option.UseRedis(config =>
                 {
                     config.DBConfig.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6379));
-                }, "redis1");
+                });
             });
 
             services.AddSingleton<ICacheService, CacheService>();

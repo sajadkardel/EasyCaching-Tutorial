@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EasyCaching.Core;
 using InMemoryProvider.Services;
 
 namespace InMemoryProvider.Controllers
@@ -23,16 +24,13 @@ namespace InMemoryProvider.Controllers
         public async Task<IActionResult> GetTime()
         {
             var cacheKey = GenerateCacheKeyFromRequest(HttpContext.Request);
-            var cachedResponse = await _cacheService.GetCachedResponseAsync(cacheKey);
 
+            var cachedResponse = await _cacheService.GetCachedResponseAsync(cacheKey);
             if (!string.IsNullOrWhiteSpace(cachedResponse))
-            {
                 return Ok(cachedResponse);
-            }
 
             var data = DateTime.Now.Second;
-            await _cacheService.CacheResponseAsync(cacheKey,data, TimeSpan.FromSeconds(5));
-
+            await _cacheService.CacheResponseAsync(cacheKey, data, TimeSpan.FromSeconds(5));
             return Ok(data);
         }
 

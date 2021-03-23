@@ -40,13 +40,13 @@ namespace HybridProvider
             services.AddEasyCaching(option =>
             {
                 // local
-                option.UseInMemory("m1");
+                option.UseInMemory("c1");
                 // distributed
                 option.UseRedis(config =>
                 {
                     config.DBConfig.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6379));
                     config.DBConfig.Database = 5;
-                }, "myredis");
+                }, "c2");
 
                 // combine local and distributed
                 option.UseHybrid(config =>
@@ -55,14 +55,14 @@ namespace HybridProvider
                         config.EnableLogging = false;
 
                         // specify the local cache provider name after v0.5.4
-                        config.LocalCacheProviderName = "m1";
+                        config.LocalCacheProviderName = "c1";
                         // specify the distributed cache provider name after v0.5.4
-                        config.DistributedCacheProviderName = "myredis";
+                        config.DistributedCacheProviderName = "c2";
                     })
                     // use redis bus
                     .WithRedisBus(busConf =>
                     {
-                        busConf.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6379));
+                        busConf.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6380));
                     });
             });
 
