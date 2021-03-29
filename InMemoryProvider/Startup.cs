@@ -70,7 +70,7 @@ namespace InMemoryProvider
 
             });
 
-            services.AddSingleton<ICacheService, CacheService>();
+            services.AddSingleton<IDateTimeService, DateTimeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

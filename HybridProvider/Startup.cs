@@ -62,7 +62,7 @@ namespace HybridProvider
                     // use redis bus
                     .WithRedisBus(busConf =>
                     {
-                        busConf.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6380));
+                        busConf.Endpoints.Add(new ServerEndPoint("127.0.0.1", 6379));
                     });
             });
 

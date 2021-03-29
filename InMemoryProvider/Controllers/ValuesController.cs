@@ -13,39 +13,17 @@ namespace InMemoryProvider.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly ICacheService _cacheService;
+        private readonly IDateTimeService _dateTimeService;
 
-        public ValuesController(ICacheService cacheService)
+        public ValuesController(IDateTimeService dateTimeService)
         {
-            _cacheService = cacheService;
+            _dateTimeService = dateTimeService;
         }
 
         [HttpGet("GetTime")]
-        public async Task<IActionResult> GetTime()
+        public IActionResult GetTime()
         {
-            var cacheKey = GenerateCacheKeyFromRequest(HttpContext.Request);
-
-            var cachedResponse = await _cacheService.GetCachedResponseAsync(cacheKey);
-            if (!string.IsNullOrWhiteSpace(cachedResponse))
-                return Ok(cachedResponse);
-
-            var data = DateTime.Now.Second;
-            await _cacheService.CacheResponseAsync(cacheKey, data, TimeSpan.FromSeconds(5));
-            return Ok(data);
-        }
-
-        // Generate Cache Key
-        private static string GenerateCacheKeyFromRequest(HttpRequest httpRequest)
-        {
-            var keyBuilder = new StringBuilder();
-            keyBuilder.Append($"{httpRequest.Path}");
-            foreach (var (key, value) in httpRequest.Query.OrderBy(x => x.Key))
-            {
-                if (!key.Equals("refreshCache"))
-                    keyBuilder.Append($"|{key}-{value}");
-            }
-
-            return keyBuilder.ToString();
+            return Ok(_dateTimeService.NowSecond());
         }
 
     }
