@@ -16,8 +16,7 @@ namespace HybridProvider.Services
         public async Task CacheResponseAsync(string cacheKey, object response, TimeSpan timeToLive)
         {
             if (response == null) return;
-            var serializedResponse = JsonConvert.SerializeObject(response);
-            await _hybridCachingProvider.SetAsync(cacheKey, serializedResponse, timeToLive);
+            await _hybridCachingProvider.SetAsync(cacheKey, response, timeToLive);
         }
 
         public async Task<string> GetCachedResponseAsync(string cacheKey)

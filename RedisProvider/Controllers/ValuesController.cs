@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using EasyCaching.Core;
+using Newtonsoft.Json;
 
 namespace RedisProvider.Controllers
 {
@@ -22,15 +20,7 @@ namespace RedisProvider.Controllers
         [HttpGet("GetTime")]
         public IActionResult GetTime()
         {
-            var cache = _easyCachingProvider.Get<int>($"{GetType()}.{System.Reflection.MethodBase.GetCurrentMethod()?.Name}");
-            if (cache.HasValue)
-            {
-                return Ok(cache.Value);
-            }
-
-            var data = DateTime.Now.Second;
-            _easyCachingProvider.Set($"{GetType()}.{System.Reflection.MethodBase.GetCurrentMethod()?.Name}", data, TimeSpan.FromMinutes(1));
-            return Ok(data);
+            return Ok(DateTime.Now.Second);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using EasyCaching.Core.Configurations;
 using RedisProvider.WebFrameWork.Middlewares;
-using EasyCaching.Serialization.Json;
 
 namespace RedisProvider
 {
@@ -51,9 +49,10 @@ namespace RedisProvider
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RedisProvider v1"));
             }
 
-            //app.UseWriteCaching();
-            //app.UseReadCaching();
-       
+            //Cache Middlewares
+            app.UseWriteCaching();
+            app.UseReadCaching();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

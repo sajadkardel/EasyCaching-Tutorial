@@ -1,5 +1,6 @@
 ﻿using System;
 using EasyCaching.Core;
+using Newtonsoft.Json;
 
 namespace InMemoryProvider.Services
 {
@@ -16,9 +17,7 @@ namespace InMemoryProvider.Services
         {
             var cache = _easyCachingProvider.Get<int>($"{GetType()}.{System.Reflection.MethodBase.GetCurrentMethod()?.Name}");
             if (cache.HasValue)
-            {
                 return cache.Value;
-            }
 
             var data = DateTime.Now.Second;
             _easyCachingProvider.Set($"{GetType()}.{System.Reflection.MethodBase.GetCurrentMethod()?.Name}", data, TimeSpan.FromMinutes(1));
