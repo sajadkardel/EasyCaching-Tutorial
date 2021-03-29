@@ -42,6 +42,8 @@ namespace RedisProvider
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+          
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -49,9 +51,8 @@ namespace RedisProvider
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RedisProvider v1"));
             }
 
-            //Cache Middlewares
-            app.UseWriteCaching();
-            app.UseReadCaching();
+            //Cache Middleware
+            app.UseCaching();
 
             app.UseHttpsRedirection();
 
