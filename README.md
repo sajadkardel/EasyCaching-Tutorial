@@ -1,4 +1,4 @@
-# 🐳 EasyCaching
+#🚀 EasyCachin
 
 <a href="https://github.com/dotnetcore/EasyCaching">EasyCaching</a> library is a Easy Implementation of Caching System.
 
