@@ -1,6 +1,6 @@
 # 🐳 EasyCaching
 
-<a href="https://easycaching.readthedocs.io/en/latest/">EasyCaching</a> library is a Easy Implementation of Caching System.
+<a href="https://github.com/dotnetcore/EasyCaching">EasyCaching</a> library is a Easy Implementation of Caching System.
 
 In this solution, there are three projects for easycaching providers, including in_memory, redis and hybrid providers, in which the local and distributed cache system is implemented.
 
