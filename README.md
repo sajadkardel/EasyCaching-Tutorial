@@ -5,9 +5,9 @@
 In this solution, there are three projects for easycaching providers, including in_memory, redis and hybrid providers, in which the local and distributed cache system is implemented.
 
 By referring to this article,
-( <a href="https://vrgl.ir/SJlkR">First Part</a> 
+( <a href="https://vrgl.ir/9mIBO">First Part</a> 
 and 
-<a href="https://vrgl.ir/9mIBO">Second Part</a> )
+<a href="https://vrgl.ir/SJlkR">Second Part</a> )
 you can learn the explanations related to the types of caches and the implementation and type of operation of each of the easycaching package providers.
 
  Another point in this solution is to implement the cache system of each project at a different level of the project, which is to implement it in the controller or service or as an annotation attribute or a dedicated middleware.
