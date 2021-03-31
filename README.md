@@ -1,3 +1,3 @@
 # 🐳 EasyCaching
 
-EasyCaching library is Easy Caching System.
+EasyCaching library is a Easy Implementation of Caching System.
